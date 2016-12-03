@@ -10,9 +10,7 @@
 <title>Job Outlook Info</title>
 </head>
 <body>
-	<% out.println("Hello World"); %>
 
-<br>
 <div>
 	<% out.println("Display Average Wages per State: "); %>								  
 	<br>
@@ -20,17 +18,17 @@
 	  <input type="submit" value="Average Wages by State" />
 	</form>
 </div>
+<br>
 <div>
 	<% out.println("Compare Average Wage to Average 10 year Post-Grad Wages: "); %>
 	<br>
-	<form method="get" action="show.jsp" enctype=text/plain>
-	  <input type="radio" name="command" value="beers"/>Let's have a beer!
+	<form method="get" action="jobWageCompare.jsp" enctype=text/plain>
+	  <input type="radio" name="command" value="state"/>Sort by Highest State Averages
 	  <br>
-	  <input type="radio" name="command" value="bars"/>Let's go to a bar!
+	  <input type="radio" name="command" value="school"/>Sort by Highest School Averages
 	  <br>
-	  <input type="submit" value="submit" />
+	  <input type="submit" value="Search" />
 	</form>
-
 </div>
 
 </body>

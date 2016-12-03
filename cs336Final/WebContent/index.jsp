@@ -10,8 +10,7 @@
 <title>Choosing the Right College For You</title>
 </head>
 <body>
-<% out.println("CS336 Project on College Costs"); %> <!-- output the same thing, but using 
-                                      jsp programming -->									  
+<% out.println("CS336 Project on College Costs"); %>								  
 <br>
 <form action="schools.jsp">
     <input type="submit" value="Search for Schools" />
