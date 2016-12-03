@@ -20,5 +20,18 @@
 	  <input type="submit" value="Average Wages by State" />
 	</form>
 </div>
+<div>
+	<% out.println("Compare Average Wage to Average 10 year Post-Grad Wages: "); %>
+	<br>
+	<form method="get" action="show.jsp" enctype=text/plain>
+	  <input type="radio" name="command" value="beers"/>Let's have a beer!
+	  <br>
+	  <input type="radio" name="command" value="bars"/>Let's go to a bar!
+	  <br>
+	  <input type="submit" value="submit" />
+	</form>
+
+</div>
+
 </body>
 </html>

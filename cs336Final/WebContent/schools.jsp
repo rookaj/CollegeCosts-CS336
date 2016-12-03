@@ -16,7 +16,7 @@
 <div>
 	<% out.println("Search For Schools By Name: "); %>				  
 	<br>
-	<form method="get" action="genSchoolSearch.jsp" enctype=text/plain>
+	<form method="get" action="nameSearch.jsp" enctype=text/plain>
 	  <input type="text" name="name"/>
 	  <br>
 	  <input type="submit" value="submit" />
