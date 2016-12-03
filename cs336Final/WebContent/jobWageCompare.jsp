@@ -25,11 +25,14 @@
 
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
-			String item = request.getParameter("name");
-			String str = "SELECT s.UNITID, s.INSTNM, s.CITY, s.STABBR, s.INSTURL, s.ADM_RATE, s.SAT_AVG, s.UGDS, s.TUITIONFEE_IN, s.TUITIONFEE_OUT, s.UGDS_MEN, s.UGDS_WOMEN FROM schoolData s WHERE s.INSTNM LIKE ";
+			String item = request.getParameter("command");
+			String str = "SELECT s.UNITID, s.INSTNM, s.CITY, s.STABBR, s.MN_EARN_WNE_P10, w.AverageWage FROM schoolData s, statewages w, states a WHERE s.STABBR  = a.Abbreviation AND a.State = w.Area ORDER BY ";
 
-			item = "'%%" + item + "%%'";
-			str = str + item;
+			if(item.equals("state")) {
+				str = str + "w.AverageWage DESC, s.MN_EARN_WNE_P10 DESC";
+			} else if(item.equals("school")) {
+				str = str + "s.MN_EARN_WNE_P10 DESC";
+			}
 
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
@@ -50,28 +53,10 @@
 					out.print("State");
 				out.print("</td>");
 				out.print("<td>");
-					out.print("URL");
+					out.print("10-year Post-Grad Wage");
 				out.print("</td>");
 				out.print("<td>");
-					out.print("Admission Rate");
-				out.print("</td>");
-				out.print("<td>");
-					out.print("Average SAT");
-				out.print("</td>");
-				out.print("<td>");
-					out.print("Total Undergraduates");
-				out.print("</td>");
-				out.print("<td>");
-					out.print("In-State Tuition");
-				out.print("</td>");
-				out.print("<td>");
-					out.print("Out-of-State Tuition");
-				out.print("</td>");
-				out.print("<td>");
-					out.print("Percent of Male Students");
-				out.print("</td>");
-				out.print("<td>");
-					out.print("Percent of Female Students");
+					out.print("State Average Wage");
 				out.print("</td>");
 			out.print("</tr>");
 
@@ -91,29 +76,12 @@
 					out.print(result.getString("s.STABBR"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.INSTURL"));
+					out.print(result.getString("s.MN_EARN_WNE_P10"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.ADM_RATE"));
+					out.print(result.getString("w.AverageWage"));
 				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.SAT_AVG"));
-				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.UGDS"));
-				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.TUITIONFEE_IN"));
-				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.TUITIONFEE_OUT"));
-				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.UGDS_MEN"));
-				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.UGDS_WOMEN"));
-				out.print("</td>");
+
 				out.print("</tr>");
 			}
 			out.print("</table>");

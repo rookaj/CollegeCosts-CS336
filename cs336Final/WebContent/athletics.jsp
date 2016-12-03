@@ -7,16 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>School Info</title>
+<title>Athletic Program Info</title>
 </head>
 <body>
 	
 
 <br>
 <div>
-	<% out.println("Search For Schools By Name: "); %>
+	<% out.println("Search For Schools with Athletic Programs by Name: "); %>
 	<br>
-	<form method="get" action="nameSearch.jsp" enctype=text/plain>
+	<form method="get" action="sportSchoolSearch.jsp" enctype=text/plain>
 	  <input type="text" name="name"/>
 	  <br>
 	  <input type="submit" value="submit" />
@@ -24,18 +24,18 @@
 </div>
 <br>
 <div>
-	<% out.println("Find Schools in Your State: "); %>				  
+	<% out.println("Find Schools with Athletic Programs in Your State(By Abbreviation): "); %>
 	<br>
-	<form method="get" action="stateSearch.jsp" enctype=text/plain>
+	<form method="get" action="sportStateSearch.jsp" enctype=text/plain>
 	  <input type="text" name="state"/>
 	  <br>
 	  <input type="submit" value="submit" />
 	</form>
 </div>
 <div>
-	<% out.println("Find Schools By General Information Unit ID: "); %>				  
+	<% out.println("Search Schools with Athletic Programs by General Information Unit ID: "); %>				  
 	<br>
-	<form method="get" action="unitIDSearch.jsp" enctype=text/plain>
+	<form method="get" action="sportIDSearch.jsp" enctype=text/plain>
 	  <input type="text" name="id"/>
 	  <br>
 	  <input type="submit" value="submit" />
