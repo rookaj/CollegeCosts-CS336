@@ -11,6 +11,19 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">College Costs</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.jsp">Home</a></li>
+      <li><a href="schools.jsp">Search Schools</a></li>
+      <li><a href="athletics.jsp">Search Athletic Programs</a></li>
+      <li><a href="jobs.jsp">Search Job Outlook</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="container">
 	<div class="page-header">
 		<h2>Job Outlook Info</h2>		
