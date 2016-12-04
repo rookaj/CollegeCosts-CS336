@@ -30,6 +30,16 @@
 	  <input type="submit" value="Search" />
 	</form>
 </div>
+<br>
+<div>
+	<% out.println("Compare State Wages to a Specific School: "); %>
+	<br>
+	<form method="get" action="jobSchoolSearch.jsp" enctype=text/plain>
+	  <input type="text" name="name"/>
+	  <br>
+	  <input type="submit" value="Search" />
+	</form>
+</div>
 
 </body>
 </html>
