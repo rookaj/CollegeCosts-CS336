@@ -8,8 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>State Wage Averages</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
 	<%
 		List<String> list = new ArrayList<String>();
 
@@ -32,22 +34,22 @@
 			ResultSet result = stmt.executeQuery(str);
 
 			//Make an HTML table to show the results in:
-			out.print("<table>");
-
+			out.print("<table class=\"table table-striped table-bordered\">");
+			out.print("<thead>");
 			//make a row
 			out.print("<tr>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			//print out column header
 			out.print("State");
-			out.print("</td>");
+			out.print("</th>");
 			//make a column
-			out.print("<td>");
+			out.print("<th>");
 			//depending on the radio button selection make a column header for Manufacturer if the beers table was selected and Address if the bars table was selected
 			out.print("Average Wage");
-			out.print("</td>");
+			out.print("</th>");
 			out.print("</tr>");
-
+			out.print("</thead>");
 			//parse out the results
 			while (result.next()) {
 				//make a row
@@ -72,6 +74,7 @@
 		} catch (Exception e) {
 		}
 	%>
-
+</div>
+<script src="<c:url value="bootstrap/js/bootstrap.min.js"/>"></script>
 </body>
 </html>
