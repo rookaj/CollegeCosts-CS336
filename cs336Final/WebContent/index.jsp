@@ -23,6 +23,29 @@
 <form action="jobs.jsp">
     <input type="submit" value="View Job Outlook Info" />
 </form>
-
+<br>
+<%out.println("Rate this site's effectiveness"); %>
+<br>
+	<form method="post" action="submitReview.jsp">
+	<table>
+	<tr>    
+	<td>Name:</td><td><input type="text" name="name"></td>
+	</tr>
+	<tr>
+	<td>Score:</td><td><select name="score" size=1>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select></td>
+	</tr>
+	<tr>
+	<td>Comment(150 char max):</td><td><input type="text" name="comment"></td>
+	</tr>
+	</table>
+	<input type="Submit" value="submit">
+	</form>
+<br>
 </body>
 </html>
