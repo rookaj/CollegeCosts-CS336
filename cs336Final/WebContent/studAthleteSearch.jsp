@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>School Search Results</title>
+<title>Results</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -38,46 +39,47 @@
 			ResultSet result = stmt.executeQuery(str);
 
 			//Make an HTML table to show the results in:
-			out.print("<table>");
+			out.print("<table class=\"table table-striped table-bordered\">");
+			out.print("<thead>");
 			out.print("<tr>");
-				out.print("<td>");
+				out.print("<th>");
 					out.print("General Information Unit ID");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Institution");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("State");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Percentage of Student-Athletes");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("NCAA Division");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Total Undergrads");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Number of Student-Athletes");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Athletic Expenses");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Athletic Revenues");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Average Scholarship per Athlete");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("In-State Tuition");
-				out.print("</td>");
-				out.print("<td>");
+				out.print("</th>");
+				out.print("<th>");
 					out.print("Out-of-State Tuition");
-				out.print("</td>");
+				out.print("</th>");
 			out.print("</tr>");
-
+			out.print("</thead>");
 			//parse out the results
 			while (result.next()) {
 				out.print("<tr>");
@@ -127,6 +129,6 @@
 		} catch (Exception e) {
 		}
 	%>
-
+<script src="<c:url value="bootstrap/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

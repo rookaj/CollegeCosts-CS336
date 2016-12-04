@@ -7,11 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>State Wage Averages</title>
+<title>Results</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
 	<%
 		List<String> list = new ArrayList<String>();
 
@@ -74,7 +73,6 @@
 		} catch (Exception e) {
 		}
 	%>
-</div>
 <script src="<c:url value="bootstrap/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

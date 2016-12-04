@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Results</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -40,22 +41,22 @@
 
 		String showResults = "Select * FROM siteReviews";
 		ResultSet result = stmt.executeQuery(showResults);
-
-		out.print("Reviews: <br><br>");
 		
 		//Make an HTML table to show the results in:
-		out.print("<table>");
+		out.print("<table class=\"table table-striped table-bordered\">");
+		out.print("<thead>");
 		out.print("<tr>");
-			out.print("<td>");
+			out.print("<th>");
 				out.print("Name");
-			out.print("</td>");
-			out.print("<td>");
+			out.print("</th>");
+			out.print("<th>");
 				out.print("Score");
-			out.print("</td>");
-			out.print("<td>");
+			out.print("</th>");
+			out.print("<th>");
 				out.print("Comment");
-			out.print("</td>");
+			out.print("</th>");
 		out.print("</tr>");
+		out.print("</thead>");
 
 		//parse out the results
 		while (result.next()) {
@@ -78,5 +79,6 @@
 		out.print("Insert Failed");
 	}
 %>
+<script src="<c:url value="bootstrap/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

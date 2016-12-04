@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!--Import some libraries that have classes that we need -->
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Results</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -28,19 +28,20 @@
 		ResultSet result = stmt.executeQuery(showResults);
 
 		//Make an HTML table to show the results in:
-		out.print("<table>");
+		out.print("<table class=\"table table-striped table-bordered\">");
+		out.print("<thead>");
 		out.print("<tr>");
-			out.print("<td>");
+			out.print("<th>");
 				out.print("Name");
-			out.print("</td>");
-			out.print("<td>");
+			out.print("</th>");
+			out.print("<th>");
 				out.print("Score");
-			out.print("</td>");
-			out.print("<td>");
+			out.print("</th>");
+			out.print("<th>");
 				out.print("Comment");
-			out.print("</td>");
+			out.print("</th>");
 		out.print("</tr>");
-
+		out.print("</thead>");
 		//parse out the results
 		while (result.next()) {
 			out.print("<tr>");
@@ -61,5 +62,6 @@
 	} catch (Exception ex) {
 	}
 %>
+<script src="<c:url value="bootstrap/js/bootstrap.min.js"/>"></script>
 </body>
 </html>
