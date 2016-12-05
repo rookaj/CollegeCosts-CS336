@@ -14,7 +14,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">College Costs</a>
+      <a class="navbar-brand" href="#">CollegeSearch</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="index.jsp">Home</a></li>
@@ -26,7 +26,9 @@
 </nav>
 <div class="container">
 	<div class="page-header">
-		<h2>CS336 Project on College Costs</h2>		
+		<h2>CollegeSearch:</h2>
+		<h4>CS336 Final Project on College Costs</h4>
+		<h6>By Alex Rook, Paul Barbaro, and Brandon Best</h6>
 	</div>						  
 <br>
 <div class="form-group">
@@ -64,9 +66,9 @@
     </div>
     <div class="form-group">
       <label for="comment">Comment(150 Char Max):</label>
-      <input type="text" class="form-control" name="comment" id="comment">
+      <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
     </div>
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<button type="submit" class="btn btn-primary">Submit Review</button>
 	</form>
 	<form action="viewReviews.jsp">
 		<button type="submit" class="btn btn-success">View All Reviews</button>
