@@ -21,6 +21,7 @@
       <li><a href="schools.jsp">Search Schools</a></li>
       <li><a href="athletics.jsp">Search Athletic Programs</a></li>
       <li><a href="jobs.jsp">Search Job Outlook</a></li>
+      <li><a href="analytics.jsp">Analytics</a></li>
     </ul>
   </div>
 </nav>
@@ -28,7 +29,6 @@
 	<div class="page-header">
 		<h2>CollegeSearch:</h2>
 		<h4>CS336 Final Project on College Costs</h4>
-		<h6>By Alex Rook, Paul Barbaro, and Brandon Best</h6>
 	</div>						  
 <br>
 <div class="form-group">
@@ -46,9 +46,14 @@
 	    <button type="submit" class="btn btn-info">View Job Outlook Info</button>
 	</form>
 </div>
+<div class="form-group">
+	<form action="analytics.jsp">
+	    <button type="submit" class="btn btn-warning">View Analytics</button>
+	</form>
+</div>
 <div>
 <br>
-<h4>Rate this site's effectiveness:</h4>
+<h4>Rate this site's helpfulness:</h4>
 	<form method="post" action="submitReview.jsp">
 	<div class="form-group">
       <label for="name">Name:</label>
