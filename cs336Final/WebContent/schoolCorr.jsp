@@ -14,13 +14,14 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">College Costs</a>
+      <a class="navbar-brand" href="#">CollegeSearch</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="index.jsp">Home</a></li>
       <li><a href="schools.jsp">Search Schools</a></li>
       <li><a href="athletics.jsp">Search Athletic Programs</a></li>
       <li><a href="jobs.jsp">Search Job Outlook</a></li>
+      <li><a href="analytics.jsp">Analytics</a></li>
     </ul>
   </div>
 </nav>
@@ -48,24 +49,27 @@
 			} else if(item.equals("admRate_SATAvg")) {
 				str = "SELECT (sum((c.ADM_RATE - b.avgAdmRate) * (c.SAT_AVG - b.avgTuit)) / ((b.coun -1)*(b.stdAdmRate *b.stdTuit))) as corr FROM schoolData c, (SELECT AVG(a.ADM_RATE) as avgAdmRate, AVG(a.SAT_AVG) as avgTuit, count(a.ADM_RATE) as coun, std(a.ADM_RATE) as stdAdmRate, std(SAT_AVG) as stdTuit FROM schoolData a WHERE a.ADM_RATE <> 0 AND a.SAT_AVG <> 0) as b WHERE ADM_RATE <> 0 AND SAT_AVG <> 0;";
 				query = "Is there a correlation between admission rate and SAT average?";
-			} else if(item.equals("tuitFee_SATAvg")) {
-				str = "SELECT (sum((c.TUITIONFEE_IN - b.avgTuit) * (c.SAT_AVG - b.avgsat)) / ((b.coun -1)*(b.stdTuit *b.stdsat))) as corr FROM schoolData c, (SELECT AVG(a.TUITIONFEE_IN) as avgTuit, AVG(a.SAT_AVG) as avgsat, count(a.TUITIONFEE_IN) as coun, std(a.TUITIONFEE_IN) as stdTuit, std(SAT_AVG) as stdsat FROM schoolData a WHERE a.TUITIONFEE_IN <> 0 AND a.SAT_AVG <> 0) as b WHERE TUITIONFEE_IN <> 0 AND SAT_AVG <> 0;";
-				query = "Is there a correlation between tuition fee and SAT average?";
+			} else if(item.equals("admRate_pGradEarn")) {
+					str = "SELECT (sum((c.MN_EARN_WNE_P10 - b.avgearn) * (c.ADM_RATE - b.avgadmrate)) / ((b.coun -1)*(b.stdearn *b.stdadmrate))) as corr FROM schoolData c, (SELECT AVG(a.MN_EARN_WNE_P10) as avgearn, AVG(a.ADM_RATE) as avgadmrate, count(a.MN_EARN_WNE_P10) as coun, std(a.MN_EARN_WNE_P10) as stdearn, std(ADM_RATE) as stdadmrate FROM schoolData a WHERE a.MN_EARN_WNE_P10 <> 0 AND a.ADM_RATE <> 0) as b WHERE c.MN_EARN_WNE_P10 <> 0 AND c.ADM_RATE <> 0;";
+					query = "Is there a correlation between admission rate and 10yr post-grad wages?";
 			} else if(item.equals("pGradEarn_SATAvg")) {
 				str = "SELECT (sum((c.MN_EARN_WNE_P10 - b.avgearn) * (c.SAT_AVG - b.avgsat)) / ((b.coun -1)*(b.stdearn *b.stdsat))) as corr FROM schoolData c, (SELECT AVG(a.MN_EARN_WNE_P10) as avgearn, AVG(a.SAT_AVG) as avgsat, count(a.MN_EARN_WNE_P10) as coun, std(a.MN_EARN_WNE_P10) as stdearn, std(SAT_AVG) as stdsat FROM schoolData a WHERE a.MN_EARN_WNE_P10 <> 0 AND a.SAT_AVG <> 0) as b WHERE c.MN_EARN_WNE_P10 <> 0 AND c.SAT_AVG <> 0;";
 				query = "Is there a correlation between 10yr post-grad wages and SAT average?";
+			} else if(item.equals("tuitFee_SATAvg")) {
+				str = "SELECT (sum((c.TUITIONFEE_IN - b.avgTuit) * (c.SAT_AVG - b.avgsat)) / ((b.coun -1)*(b.stdTuit *b.stdsat))) as corr FROM schoolData c, (SELECT AVG(a.TUITIONFEE_IN) as avgTuit, AVG(a.SAT_AVG) as avgsat, count(a.TUITIONFEE_IN) as coun, std(a.TUITIONFEE_IN) as stdTuit, std(SAT_AVG) as stdsat FROM schoolData a WHERE a.TUITIONFEE_IN <> 0 AND a.SAT_AVG <> 0) as b WHERE TUITIONFEE_IN <> 0 AND SAT_AVG <> 0;";
+				query = "Is there a correlation between tuition fee and SAT average?";
 			} else if(item.equals("gradDebt_tuitFee")) {
 				str = "SELECT (sum((c.GRAD_DEBT_MDN_SUPP - b.avgdebt) * (c.TUITIONFEE_IN - b.avgTuit)) / ((b.coun -1)*(b.stddebt *b.stdTuit))) as corr FROM schoolData c, ( SELECT AVG(a.GRAD_DEBT_MDN_SUPP) as avgdebt, AVG(a.TUITIONFEE_IN) as avgTuit, count(a.GRAD_DEBT_MDN_SUPP) as coun, std(a.GRAD_DEBT_MDN_SUPP) as stddebt, std(TUITIONFEE_IN) as stdTuit FROM schoolData a WHERE a.GRAD_DEBT_MDN_SUPP <> 0 AND a.TUITIONFEE_IN <> 0) as b WHERE c.GRAD_DEBT_MDN_SUPP <> 0 AND c.TUITIONFEE_IN <> 0;";
-				query = "Is there a correlation between average debt upon graduating and tuition fee?";
-			} else if(item.equals("SATAvg_pGradEarn")) {
-				str = "SELECT (sum((c.SAT_AVG - b.avgsat) * (c.MN_EARN_WNE_P10 - b.avgearn)) / ((b.coun -1)*(b.stdsat *b.stdearn))) as corr FROM schoolData c, (SELECT AVG(a.SAT_AVG) as avgsat, AVG(a.MN_EARN_WNE_P10) as avgearn, count(a.SAT_AVG) as coun, std(a.SAT_AVG) as stdsat, std(MN_EARN_WNE_P10) as stdearn FROM schoolData a WHERE a.SAT_AVG <> 0 AND a.MN_EARN_WNE_P10 <> 0) as b WHERE c.SAT_AVG <> 0 AND c.MN_EARN_WNE_P10 <> 0;";
-				query = "Is there a correlation between SAT average and 10yr post-grad wages?";
+				query = "Is there a correlation between tuition fee and average debt upon graduation?";
 			} else if(item.equals("tuitFee_pell")) {
 				str = "SELECT (sum((c.TUITIONFEE_IN - b.avgtuit) * (c.PCTPELL - b.avgpell)) / ((b.coun -1)*(b.stdtuit *b.stdpell))) as corr FROM schoolData c, (SELECT AVG(a.TUITIONFEE_IN) as avgtuit, AVG(a.PCTPELL) as avgpell, count(a.TUITIONFEE_IN) as coun, std(a.TUITIONFEE_IN) as stdtuit, std(PCTPELL) as stdpell FROM schoolData a WHERE a.TUITIONFEE_IN <> 0 AND a.PCTPELL <> 0) as b WHERE c.TUITIONFEE_IN <> 0 AND c.PCTPELL <> 0;";
 				query = "Is there a correlation between tuition fee and percent of students who receive Pell grants?";
 			} else if(item.equals("tuitFee_fLoan")) {
 				str = "SELECT (sum((c.TUITIONFEE_IN - b.avgtuit) * (c.PCTFLOAN - b.avgfloan)) / ((b.coun -1)*(b.stdtuit *b.stdfloan))) as corr FROM schoolData c, (SELECT AVG(a.TUITIONFEE_IN) as avgtuit, AVG(a.PCTFLOAN) as avgfloan, count(a.TUITIONFEE_IN) as coun, std(a.TUITIONFEE_IN) as stdtuit, std(PCTFLOAN) as stdfloan FROM schoolData a WHERE a.TUITIONFEE_IN <> 0 AND a.PCTFLOAN <> 0) as b WHERE c.TUITIONFEE_IN <> 0 AND c.PCTFLOAN <> 0;";
 				query = "Is there a correlation between tuition fee and percent of students who receive federal loans?";
+			} else if(item.equals("tuitFee_sportRev")) {
+				str = "SELECT (sum((c.TUITIONFEE_IN - b.avgtuit) * (c.GrandTotalRevenue - b.avgrev)) / ((b.coun -1)*(b.stdtuit *b.stdrev))) as corr FROM (SELECT z.TUITIONFEE_IN, z.UNITID, z.INSTNM, y.GrandTotalRevenue FROM schoolData z, athleticprograms y WHERE z.UNITID = y.UNITID) as c, (SELECT AVG(a.TUITIONFEE_IN) as avgtuit, AVG(a.GrandTotalRevenue) as avgrev, count(a.TUITIONFEE_IN) as coun, std(a.TUITIONFEE_IN) as stdtuit, std(a.GrandTotalRevenue) as stdrev FROM (SELECT f.TUITIONFEE_IN, f.UNITID, f.INSTNM, g.GrandTotalRevenue FROM schoolData f, athleticprograms g WHERE f.UNITID = g.UNITID) as a WHERE a.TUITIONFEE_IN <> 0 AND a.GrandTotalRevenue <> 0) as b WHERE c.TUITIONFEE_IN <> 0 AND c.GrandTotalRevenue <> 0;";
+				query = "Is there a correlation between tuition fee and revenue from the athletic program?";
 			}
 
 			//Run the query against the database.
@@ -76,16 +80,22 @@
 			
 			if(correlation >= 0.7 || correlation <= -0.7) {
 				out.print("<div class=\"panel panel-success\"><div class=\"panel-heading\"><h4>");
-				out.print(query);
-				out.print("</h4></div><div class=\"panel-body\"><h5>Correlation: ");
+				out.print("<b>" + query + "</b>");
+				out.print("</h4></div><div class=\"panel-body\"><h5>Strong Correlation: ");
 				out.print(result.getString("corr"));
-				out.print("</h5><h6>Note: A correlation between greater than 0.7 or less than -0.7 is considered a strong correlation</h6></div></div>");
+				out.print("</h5><h6>Note: A correlation between greater than 0.7 or less than -0.7 is considered a strong correlation, 0.3 to 0.7 or -0.3 to -0.7 is considered a weak correlation, and -0.3 to 0.3 is considered no correlation</h6></div></div>");
+			} else if(correlation >= 0.3 || correlation <= -0.3) {
+				out.print("<div class=\"panel panel-warning\"><div class=\"panel-heading\"><h4>");
+				out.print("<b>" + query + "</b>");
+				out.print("</h4></div><div class=\"panel-body\"><h5> Weak Correlation: ");
+				out.print(result.getString("corr"));
+				out.print("</h5><h6>Note: A correlation between greater than 0.7 or less than -0.7 is considered a strong correlation, 0.3 to 0.7 or -0.3 to -0.7 is considered a weak correlation, and -0.3 to 0.3 is considered no correlation</h6></div></div>");
 			} else {
 				out.print("<div class=\"panel panel-danger\"><div class=\"panel-heading\"><h4>");
-				out.print(query);
-				out.print("</h4></div><div class=\"panel-body\"><h5>Correlation: ");
+				out.print("<b>" + query + "</b>");
+				out.print("</h4></div><div class=\"panel-body\"><h5>No Correlation: ");
 				out.print(result.getString("corr"));
-				out.print("</h5><h6>Note: A correlation between greater than 0.7 or less than -0.7 is considered a strong correlation</h6></div></div>");
+				out.print("</h5><h6>Note: A correlation between greater than 0.7 or less than -0.7 is considered a strong correlation, 0.3 to 0.7 or -0.3 to -0.7 is considered a weak correlation, and -0.3 to 0.3 is considered no correlation</h6></div></div>");
 			}
 
 			//close the connection.

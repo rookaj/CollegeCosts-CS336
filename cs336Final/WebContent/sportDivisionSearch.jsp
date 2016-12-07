@@ -40,11 +40,27 @@
 
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
-			String item = request.getParameter("state");
-			String str = "SELECT s.UNITID, s.INSTNM, s.CITY, s.STABBR, s.INSTURL, s.ADM_RATE, s.SAT_AVG, s.UGDS, s.TUITIONFEE_IN, s.TUITIONFEE_OUT, s.UGDS_MEN, s.UGDS_WOMEN FROM schoolData s WHERE s.STABBR = ";
-
-			item = "\"" + item + "\"";
-			str = str + item + "ORDER BY s.INSTNM";
+			String item = request.getParameter("division");
+			String str = "SELECT a.UNITID, a.School, a.State, a.ClassificationName, a.TotalUndergraduates, (a.UnduplicatedCountMensParticipation + a.UnduplicatedCountWomensParticipation) as totalStudAthletes, ((a.UnduplicatedCountMensParticipation + a.UnduplicatedCountWomensParticipation)/a.TotalUndergraduates) as percentStudAthletes, a.GrandTotalExpenses, a.GrandTotalRevenue, ((a.MensTeamAthleticStudentAid + a.WomensTeamAthleticStudentAid)/(a.UnduplicatedCountMensParticipation + a.UnduplicatedCountWomensParticipation)) as avgScholarship, s.TUITIONFEE_IN, s.TUITIONFEE_OUT FROM schoolData s, athleticprograms a WHERE s.UNITID = a.UNITID AND a.ClassificationName = ";
+			String div = "";
+			
+			if(item.equals("1")) {
+				div = "\"NCAA Division I-A\"";
+			} else if(item.equals("2")) {
+				div = "\"NCAA Division I-AA\"";
+			} else if(item.equals("3")) {
+				div = "\"NCAA Division I-AAA\"";
+			} else if(item.equals("4")) {
+				div = "\"NCAA Division II (with football)\"";
+			} else if(item.equals("5")) {
+				div = "\"NCAA Division II (without football)\"";
+			} else if(item.equals("6")) {
+				div = "\"NCAA Division III (with football)\"";
+			} else if(item.equals("7")) {
+				div = "\"NCAA Division III (without football)\"";
+			}
+			
+			str = str + div + "ORDER BY a.School";
 
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
@@ -60,22 +76,28 @@
 					out.print("Institution");
 				out.print("</th>");
 				out.print("<th>");
-					out.print("City");
-				out.print("</th>");
-				out.print("<th>");
 					out.print("State");
 				out.print("</th>");
 				out.print("<th>");
-					out.print("URL");
+					out.print("NCAA Division");
 				out.print("</th>");
 				out.print("<th>");
-					out.print("Admission Rate");
+					out.print("Total Undergrads");
 				out.print("</th>");
 				out.print("<th>");
-					out.print("Average SAT");
+					out.print("Number of Student-Athletes");
 				out.print("</th>");
 				out.print("<th>");
-					out.print("Total Undergraduates");
+					out.print("Percentage of Student-Athletes");
+				out.print("</th>");
+				out.print("<th>");
+					out.print("Athletic Expenses");
+				out.print("</th>");
+				out.print("<th>");
+					out.print("Athletic Revenues");
+				out.print("</th>");
+				out.print("<th>");
+					out.print("Average Scholarship per Athlete");
 				out.print("</th>");
 				out.print("<th>");
 					out.print("In-State Tuition");
@@ -83,52 +105,46 @@
 				out.print("<th>");
 					out.print("Out-of-State Tuition");
 				out.print("</th>");
-				out.print("<th>");
-					out.print("Percent of Male Students");
-				out.print("</th>");
-				out.print("<th>");
-					out.print("Percent of Female Students");
-				out.print("</th>");
 			out.print("</tr>");
 			out.print("</thead>");
 			//parse out the results
 			while (result.next()) {
 				out.print("<tr>");
 				out.print("<td>");
-					out.print(result.getString("s.UNITID"));
+					out.print(result.getString("a.UNITID"));
 				out.print("</td>");
 				out.print("<td>");
-				out.print(result.getString("s.INSTNM"));
+				out.print(result.getString("a.School"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.CITY"));
+					out.print(result.getString("a.State"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.STABBR"));
+					out.print(result.getString("a.ClassificationName"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.INSTURL"));
+					out.print(result.getString("a.TotalUndergraduates"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.ADM_RATE"));
+					out.print(result.getString("totalStudAthletes"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.SAT_AVG"));
+					out.print(result.getString("percentStudAthletes"));
 				out.print("</td>");
 				out.print("<td>");
-					out.print(result.getString("s.UGDS"));
+					out.print(result.getString("a.GrandTotalExpenses"));
+				out.print("</td>");
+				out.print("<td>");
+					out.print(result.getString("a.GrandTotalRevenue"));
+				out.print("</td>");
+				out.print("<td>");
+					out.print(result.getString("avgScholarship"));
 				out.print("</td>");
 				out.print("<td>");
 					out.print(result.getString("s.TUITIONFEE_IN"));
 				out.print("</td>");
 				out.print("<td>");
 					out.print(result.getString("s.TUITIONFEE_OUT"));
-				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.UGDS_MEN"));
-				out.print("</td>");
-				out.print("<td>");
-					out.print(result.getString("s.UGDS_WOMEN"));
 				out.print("</td>");
 				out.print("</tr>");
 			}

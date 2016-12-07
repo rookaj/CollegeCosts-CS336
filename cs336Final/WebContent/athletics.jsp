@@ -106,6 +106,22 @@
 		<button type="submit" class="btn btn-primary">Search</button>
 	</div>
 	</form>
+	<br>
+	<form method="get" action="sportDivisionSearch.jsp" enctype=text/plain>
+	<div class="form-group">
+		<label for="state">Find Schools within a specific NCAA division:</label>
+		<select class="form-control" name="division" size="1">
+			<option value="1">NCAA Division I-A</option>
+			<option value="2">NCAA Division I-AA</option>
+			<option value="3">NCAA Division I-AAA</option>
+			<option value="4">NCAA Division II (with football)</option>
+			<option value="5">NCAA Division II (without football)</option>
+			<option value="6">NCAA Division III (with football)</option>
+			<option value="7">NCAA Division III (without football)</option>
+		</select>
+		<button type="submit" class="btn btn-primary">Search</button>
+	</div>
+	</form>
 </div>
 <div class="container">
 	<h5><b>Sort Schools by Percentage of Student-Athletes:</b></h5>

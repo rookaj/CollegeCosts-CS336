@@ -44,7 +44,7 @@
 			String str = "SELECT a.UNITID, a.School, a.State, a.ClassificationName, a.TotalUndergraduates, (a.UnduplicatedCountMensParticipation + a.UnduplicatedCountWomensParticipation) as totalStudAthletes, ((a.UnduplicatedCountMensParticipation + a.UnduplicatedCountWomensParticipation)/a.TotalUndergraduates) as percentStudAthletes, a.GrandTotalExpenses, a.GrandTotalRevenue, ((a.MensTeamAthleticStudentAid + a.WomensTeamAthleticStudentAid)/(a.UnduplicatedCountMensParticipation + a.UnduplicatedCountWomensParticipation)) as avgScholarship, s.TUITIONFEE_IN, s.TUITIONFEE_OUT FROM schoolData s, athleticprograms a WHERE s.UNITID = a.UNITID AND s.STABBR = ";
 
 			item = "\"" + item + "\"";
-			str = str + item;
+			str = str + item + "ORDER BY a.School";
 
 			//Run the query against the database.
 			ResultSet result = stmt.executeQuery(str);
