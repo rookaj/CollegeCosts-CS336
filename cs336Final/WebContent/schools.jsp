@@ -28,7 +28,30 @@
 <div class="container">
 	<div class="page-header">
 		<h2>Search For Schools</h2>		
-	</div>	
+	</div>
+</div>
+<div class="container">
+	<div class="panel panel-primary">
+     <div class="panel-heading"><h4>Already Accepted to a School? Find Similar Ones:</h4></div>
+     <div class="panel-body">	
+	  <form method="get" action="similarSearch.jsp" enctype=text/plain>
+	  <div class="form-group">
+		<label for="name">Enter your school's General Information Unit ID to find similar schools(If you don't know it, Search by Name below to find it):</label>
+      	<input type="text" class="form-control" name="id" id="id">
+		<label for="similar">Find Schools With Similar:</label>
+		<select class="form-control" name="similar" size="1">
+			<option value="sat">SAT Scores</option>
+			<option value="adm">Admission Rate</option>
+			<option value="tuit">Tuition</option>
+			<option value="num">Number of Students</option>
+		</select>
+		<button type="submit" class="btn btn-success">Search</button>
+	 </div>
+	 </form>
+	</div>
+    </div>
+</div>
+<div class="container">
 	<form method="get" action="nameSearch.jsp" enctype=text/plain>
 	<div class="form-group">
 		<label for="name">Search For Schools By Name:</label>
@@ -102,6 +125,20 @@
 			<option value="WY">Wyoming</option>
 		</select>
 		<button type="submit" class="btn btn-primary">Search</button>
+	</div>
+	</form>
+</div>
+<div class="container">
+	<h5><b>Show School Data for Schools:</b></h5>
+	<form method="get" action="schoolHasSports.jsp" enctype=text/plain>
+	<div class="form-group">
+	<div class="radio">
+	  <label><input type="radio" name="command" value="with"/>With NCAA Athletic Programs</label>
+	</div>
+	<div class="radio">  
+	  <label><input type="radio" name="command" value="without"/>Without NCAA Athletic Programs</label>
+	</div>
+	  <button type="submit" class="btn btn-primary">Search</button>
 	</div>
 	</form>
 </div>
