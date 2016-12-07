@@ -53,7 +53,7 @@
 </div>
 <div>
 <br>
-<h4>Rate this site's helpfulness:</h4>
+<h4>Rate this Site's Helpfulness:</h4>
 	<form method="post" action="submitReview.jsp">
 	<div class="form-group">
       <label for="name">Name:</label>
