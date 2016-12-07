@@ -33,16 +33,27 @@
 	</div>
 	<form method="get" action="schoolCorr.jsp" enctype=text/plain>
 	<div class="form-group">
-		<label for="query">Select a Query to View:</label>
+		<label for="query">Select a Correlation Query to View:</label>
 		<select class="form-control" name="query" size="1">
 			<option value="admRate_tuitFee">Is there a correlation between admission rate and tuition fee?</option>
 			<option value="admRate_SATAvg">Is there a correlation between admission rate and SAT average?</option>
-			<option value="tuitFee_SATAvg">Is there a correlation between tuition fee and SAT average?</option>
+			<option value="admRate_pGradEarn">Is there a correlation between admission rate and 10yr post-grad wages?</option>
 			<option value="pGradEarn_SATAvg">Is there a correlation between 10yr post-grad wages and SAT average?</option>
-			<option value="gradDebt_tuitFee">Is there a correlation between average debt upon graduating and tuition fee?</option>
-			<option value="SATAvg_pGradEarn">Is there a correlation between SAT average and 10yr post-grad wages?</option>
+			<option value="gradDebt_tuitFee">Is there a correlation between tuition fee and average debt upon graduation?</option>
+			<option value="tuitFee_SATAvg">Is there a correlation between tuition fee and SAT average?</option>
 			<option value="tuitFee_pell">Is there a correlation between tuition fee and percent of students who receive Pell grants?</option>
 			<option value="tuitFee_fLoan">Is there a correlation between tuition fee and percent of students who receive federal loans?</option>
+			<option value="tuitFee_sportRev">Is there a correlation between tuition fee and revenue from the athletic program?</option>
+		</select>
+		<button type="submit" class="btn btn-primary">View</button>
+	</div>
+	</form>
+	<form method="get" action="sportCorr.jsp" enctype=text/plain>
+	<div class="form-group">
+		<label for="query">Additional Relationships:</label>
+		<select class="form-control" name="query" size="1">
+			<option value="division_tuition">View the average tuition cost for each NCAA Division</option>
+			<option value="womenAid_menAid">Compare the amount of athletic scholarships given per male athlete and female athlete</option>
 		</select>
 		<button type="submit" class="btn btn-primary">View</button>
 	</div>
